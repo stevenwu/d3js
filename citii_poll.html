@@ -1,0 +1,75 @@
+<!DOCTYPE HTML>
+<html>
+  <head>
+    <meta charset="UTF8">
+    <script src='http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js'></script>
+    <script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
+    <script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+    <title>Citii Poll of the Week</title>
+
+    <style type="text/css">
+      .chart {
+        margin-top: 10px;
+      }
+      .chart div {
+        font: 20px sans-serif;
+        background-color: steelblue;
+        text-align: right;
+        padding: 3px;
+        margin: 1px;
+        color: white;
+      }
+
+      .chart rect {
+        stroke: white;
+        fill: blue;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class='container'>
+      <h1>Citii Poll of the Week</h1>
+      <h4>Are you in favour of adding seasonal bike lanes around the city?</h4>
+      <button type='button' class='btn btn-success'>YES</button>
+      <button type='button' class='btn btn-danger'>NO</button>
+      <script type='text/javascript'>
+        var width = 500;
+        var height = 300;
+        var data = [4, 8];
+        var chart = d3.select('.container').append('div')
+          .attr('class', 'chart');
+
+        var donut = d3.layout.pie(data)
+
+        donut = d3.select('.container').append('div')
+          .attr('class', 'donut');
+         
+
+        function redraw() {
+          chart.selectAll('div')
+            .data(data)
+            .style('width', function(d) { return d * 10 + 'px'; })
+            .text(function(d) { return d; });
+        };
+
+        chart.selectAll('div')
+          .data(data)
+          .enter().append('div')
+          .style('width', function(d) { return d * 10 + 'px'; })
+          .text(function(d) { return d; });
+
+          $(".btn-success").click(function() {
+              data[0] += 1;
+              redraw();
+              });
+          $(".btn-danger").click(function() {
+            data[1] += 1;
+            redraw();
+            });
+
+      </script>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,78 @@
+<!DOCTYPE HTML>
+<html>
+  <head>
+    <meta charset="UTF8">
+    <script src='http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js'></script>
+    <script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
+    <script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+    <title>Citii Poll of the Week</title>
+
+    <style type="text/css">
+    </style>
+  </head>
+
+  <body>
+    <div class='container'>
+      <h1>Citii Poll of the Week</h1>
+      <h4>Are you in favour of adding seasonal bike lanes around the city?</h4>
+      <button type='button' class='btn btn-success'>YES</button>
+      <button type='button' class='btn btn-danger'>NO</button>
+      <script type='text/javascript'>
+        var width = 600;
+        var height = 400;
+        var radius = Math.min(width, height) / 2;
+        var data = [ { 'label': 'YES', 'value': 8 },
+                     { 'label': 'NO', 'value': 4 } ];
+        var color = d3.scale.category20();
+        
+        var svg = d3.select('.container')
+            .append('svg')
+            .attr('width', width)
+            .attr('height', height)
+            .append('g')
+            .attr('transform', 'translate(' + width/2 + ',' + height/2 + ')');
+
+
+        var arc = d3.svg.arc().outerRadius(radius).innerRadius(radius - 100);
+        var pie = d3.layout.pie()
+                  .value(function(d) { return d.value; })
+                  .sort(null);
+
+
+
+        // function update() {
+        var path = svg.selectAll('path')
+          .data(pie(data))
+
+
+          path.enter().append('path')
+          .attr('fill', function(d, i) { return color(i); })
+          .attr('d', arc);
+
+              svg.select('g')
+                  .append('text')
+                  .attr('transform', function(d) { return 'translate(' + arc.centroid(d) + ')';})
+                .attr('text-anchor', 'middle')
+                  .text(function(d, i) { return data[i].label; });
+
+            function update() {
+              svg.selectAll('path')
+                .data(pie(data))
+                .attr('fill', function(d, i) { return color(i); })
+                .attr('d', arc);
+            };
+          
+      $(".btn-success").click(function() {
+          data[0].value += 1;
+          update();
+          });
+      $(".btn-danger").click(function() {
+        data[1].value += 1;
+        update();
+        });
+
+      </script>
+    </div>
+  </body>
+</html>
