@@ -2,22 +2,33 @@
 <html>
   <head>
     <meta charset="UTF8">
-    <!-- <script src='http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js'></script> -->
-    <!-- <script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script> -->
+    <script src='http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js'></script>
+    <script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
     <script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
-    <title>Citii Poll of the Week</title>
+    <title>Poll of the Week</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <style type="text/css">
+      button {
+        margin: 10px;
+      }
+
     </style>
   </head>
 
   <body>
     <div class='container'>
-      <h1>Citii Poll of the Week</h1>
-      <h4>Are you in favour of adding seasonal bike lanes around the city?</h4>
-      <button type='button' class='btn btn-success'>YES</button>
-      <button type='button' class='btn btn-danger'>NO</button>
+      <div class='row'>
+        <h1>Poll of the Week</h1>
+      </div>
+      <div class='row'>
+        <h4>Are you in favour of adding seasonal bike lanes around the city?</h4>
+      </div>
+      <div class='row'>
+      <button type='button' class='btn btn-lg btn-success'>YES</button>
+      <button type='button' class='btn btn-lg btn-danger'>NO</button>
+    </div>
       <script type='text/javascript'>
         var width = 600;
         var height = 400;
